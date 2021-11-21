@@ -1,1 +1,1 @@
-# The-Mercenary-Vault
+# The Mercenary Vault
