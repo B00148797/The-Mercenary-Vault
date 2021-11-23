@@ -420,6 +420,9 @@ MonoBehaviour:
   titleScreen: {fileID: 1137927873}
   room: {fileID: 996832569}
   creditsScreen: {fileID: 1600954195}
+  player: {fileID: 4677392653732450284, guid: 8bf6c8e18a9ebd6419e8db5ad916e77c, type: 3}
+  enemy: {fileID: 7346773736782420649, guid: a5aae22f4221c9b48a0770eaa0c68313, type: 3}
+  projectile: {fileID: 2972114844249853189, guid: 633568d887ea2534ab51c14a299c1257, type: 3}
 --- !u!4 &377818497
 Transform:
   m_ObjectHideFlags: 0
@@ -1105,7 +1108,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 2
   m_GateFitMode: 2
   m_FOVAxisMode: 0
