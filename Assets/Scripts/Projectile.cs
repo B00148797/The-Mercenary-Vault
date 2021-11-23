@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    private float projectileSpeed = 10;
+    private float destroyObjectsLimit = 50;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,9 +16,9 @@ public class Projectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.forward * Time.deltaTime * 10);
-
-        if(transform.position.x > 50 || transform.position.x < -50 || transform.position.z > 50 || transform.position.z < -50)
+        transform.Translate(Vector3.forward * Time.deltaTime * projectileSpeed);
+        // TODO : Search for a better destroy condition
+        if(transform.position.x > destroyObjectsLimit || transform.position.x < -destroyObjectsLimit || transform.position.z > destroyObjectsLimit || transform.position.z < -destroyObjectsLimit)
         {
             Destroy(gameObject);
         }

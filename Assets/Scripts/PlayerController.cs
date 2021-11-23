@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    // Projectile GameObject
     public GameObject projectilePrefab;
 
+    // Inputs for the movement of the player
     private float horizontalInput;
     private float verticalInput;
 
+    // Speed of the player
     private readonly float movementSpeed = 5;
 
     // For the rotation while throwing projectiles
@@ -18,7 +21,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 lookingRight = new Vector3(0, 90, 0);
     private Vector3 lookingLeft = new Vector3(0, -90, 0);
 
-    // Variables avoiding spamming
+    // Variables avoiding spamming projectiles
     public bool throwableProjectiles = true;
 
     // Update is called once per frame
@@ -49,7 +52,6 @@ public class PlayerController : MonoBehaviour
                 transform.Translate(Vector3.forward * Time.deltaTime * movementSpeed * horizontalInput);
                 transform.Translate(Vector3.right * Time.deltaTime * movementSpeed * -verticalInput);
                 break;
-
         }
 
         // Throw a projectile toward the top of the screen
@@ -81,6 +83,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // Method to throw projectiles
     private void ThrowProjectile(string directionToThrow)
     {
         if (throwableProjectiles)
