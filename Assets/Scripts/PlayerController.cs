@@ -11,52 +11,80 @@ public class PlayerController : MonoBehaviour
 
     private readonly float movementSpeed = 5;
 
+    // For the rotation while throwing projectiles
+    private string direction = "up";
+    private Vector3 lookingForward = new Vector3(0, 0, 0);
+    private Vector3 lookingBackward = new Vector3(0, 180, 0);
+    private Vector3 lookingRight = new Vector3(0, 90, 0);
+    private Vector3 lookingLeft = new Vector3(0, -90, 0);
+
     // Start is called before the first frame update
     void Start()
     {
-        horizontalInput = Input.GetAxis("Horizontal");
-        verticalInput = Input.GetAxis("Vertical");
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Movement based on QASD keys
+        horizontalInput = Input.GetAxis("Horizontal");
+        verticalInput = Input.GetAxis("Vertical");
 
-        transform.Translate(Vector3.forward * Time.deltaTime * movementSpeed * verticalInput);
-        transform.Translate(Vector3.right * Time.deltaTime * movementSpeed * horizontalInput);
 
-        if (Input.GetKeyDown(KeyCode.W))
+        // Translate direction according to the rotation of the player
+        switch (direction)
         {
-            horizontalInput = Input.GetAxis("Horizontal");
-            verticalInput = Input.GetAxis("Vertical");
+            case "up":
+                transform.Translate(Vector3.forward * Time.deltaTime * movementSpeed * verticalInput);
+                transform.Translate(Vector3.right * Time.deltaTime * movementSpeed * horizontalInput);
+                break;
+            case "down":
+                transform.Translate(Vector3.forward * Time.deltaTime * movementSpeed * -verticalInput);
+                transform.Translate(Vector3.right * Time.deltaTime * movementSpeed * -horizontalInput);
+                break;
+            case "left":
+                transform.Translate(Vector3.forward * Time.deltaTime * movementSpeed * -horizontalInput);
+                transform.Translate(Vector3.right * Time.deltaTime * movementSpeed * verticalInput);
+                break;
+            case "right":
+                transform.Translate(Vector3.forward * Time.deltaTime * movementSpeed * horizontalInput);
+                transform.Translate(Vector3.right * Time.deltaTime * movementSpeed * -verticalInput);
+                break;
 
-            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
-            Debug.Log(transform.position);
-            Instantiate(projectilePrefab, transform.position, transform.rotation);
         }
 
-        if (Input.GetKeyDown(KeyCode.A))
+        // Throw a projectile toward the top of the screen
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            horizontalInput = Input.GetAxis("Vertical");
-            verticalInput = Input.GetAxis("Horizontal");
-            transform.rotation = Quaternion.Euler(new Vector3(0, 90, 0));
+            transform.rotation = Quaternion.Euler(lookingForward);
             Instantiate(projectilePrefab, transform.position, transform.rotation);
+            Debug.Log("Working?");
+            direction = "up";
         }
 
-        if (Input.GetKeyDown(KeyCode.S))
+        // Throw a projectile toward the left of the screen
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            horizontalInput = Input.GetAxis("Horizontal");
-            verticalInput = Input.GetAxis("Vertical");
-            transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+            transform.rotation = Quaternion.Euler(lookingLeft);
             Instantiate(projectilePrefab, transform.position, transform.rotation);
+            direction = "left";
         }
 
-        if (Input.GetKeyDown(KeyCode.D))
+        // Throw a projectile toward the bottom of the screen
+        if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            horizontalInput = Input.GetAxis("Vertical");
-            verticalInput = Input.GetAxis("Horizontal");
-            transform.rotation = Quaternion.Euler(new Vector3(0, -90, 0));
+            transform.rotation = Quaternion.Euler(lookingBackward);
             Instantiate(projectilePrefab, transform.position, transform.rotation);
+            direction = "down";
+        }
+
+        // Throw a projectile toward the right of the screen
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            transform.rotation = Quaternion.Euler(lookingRight);
+            Instantiate(projectilePrefab, transform.position, transform.rotation);
+            direction = "right";
         }
     }
 }

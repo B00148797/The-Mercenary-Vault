@@ -15,9 +15,14 @@ public class Projectile : MonoBehaviour
     {
         transform.Translate(Vector3.forward * Time.deltaTime * 10);
 
-        if(transform.position.x > 200 || transform.position.x < -200 || transform.position.z > 200 || transform.position.z < -200)
+        if(transform.position.x > 50 || transform.position.x < -50 || transform.position.z > 50 || transform.position.z < -50)
         {
             Destroy(gameObject);
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(!collision.gameObject.CompareTag("Player")) Destroy(gameObject);
     }
 }
