@@ -15,6 +15,7 @@ public class SpawnRoom : MonoBehaviour
     private GameObject closedRoom;
 
     public List<GameObject> rooms;
+    public bool spawned = false;
     private float waitTime = 4;
     private bool spawnedBoss;
     private GameObject bossRoom;
@@ -37,26 +38,31 @@ public class SpawnRoom : MonoBehaviour
 
     void Spawn()
     {
-        switch (needRoomDirection)
+        if (spawned == false)
         {
-            case 0:
-                break;
-            case 1:
-                rand = Random.Range(0, topRooms.Length);
-                Instantiate(topRooms[rand], transform.position, topRooms[rand].transform.rotation);
-                break;
-            case 2:
-                rand = Random.Range(0, rightRooms.Length);
-                Instantiate(rightRooms[rand], transform.position, rightRooms[rand].transform.rotation);
-                break;
-            case 3:
-                rand = Random.Range(0, bottomRooms.Length);
-                Instantiate(bottomRooms[rand], transform.position, bottomRooms[rand].transform.rotation);
-                break;
-            case 4:
-                rand = Random.Range(0, leftRooms.Length);
-                Instantiate(leftRooms[rand], transform.position, leftRooms[rand].transform.rotation);
-                break;
+            switch (needRoomDirection)
+            {
+                case 0:
+                    break;
+                case 1:
+                    rand = Random.Range(0, topRooms.Length);
+                    Instantiate(topRooms[rand], transform.position, topRooms[rand].transform.rotation);
+                    break;
+                case 2:
+                    rand = Random.Range(0, rightRooms.Length);
+                    Instantiate(rightRooms[rand], transform.position, rightRooms[rand].transform.rotation);
+                    break;
+                case 3:
+                    rand = Random.Range(0, bottomRooms.Length);
+                    Instantiate(bottomRooms[rand], transform.position, bottomRooms[rand].transform.rotation);
+                    break;
+                case 4:
+                    rand = Random.Range(0, leftRooms.Length);
+                    Instantiate(leftRooms[rand], transform.position, leftRooms[rand].transform.rotation);
+                    break;
+            }
+            spawned = true;
+            //rooms.Add(this.gameObject);
         }
     }
 
@@ -64,10 +70,21 @@ public class SpawnRoom : MonoBehaviour
     {
         Destroy(gameObject);
 
-        if (collision.gameObject.CompareTag("SpawnPoint"))
+        /*if (collision.gameObject.CompareTag("SpawnPoint"))
         {
             closedRoom = GameObject.Find("CloseRoom");
             Instantiate(closedRoom, transform.position, transform.rotation);
+        }*/
+
+        if (collision.gameObject.CompareTag("SpawnPoint"))
+        {
+            if (spawned == false)
+            {
+                closedRoom = GameObject.Find("CloseRoom");
+                Instantiate(closedRoom, transform.position, transform.rotation);
+                Destroy(collision.gameObject);
+            }
+            spawned = true;
         }
     }
 }
