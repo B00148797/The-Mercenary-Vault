@@ -422,7 +422,6 @@ MonoBehaviour:
   creditsScreen: {fileID: 1600954195}
   player: {fileID: 4677392653732450284, guid: 8bf6c8e18a9ebd6419e8db5ad916e77c, type: 3}
   enemy: {fileID: 7346773736782420649, guid: a5aae22f4221c9b48a0770eaa0c68313, type: 3}
-  projectile: {fileID: 2972114844249853189, guid: 633568d887ea2534ab51c14a299c1257, type: 3}
 --- !u!4 &377818497
 Transform:
   m_ObjectHideFlags: 0
@@ -2387,7 +2386,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 0}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.3764706, g: 0.3764706, b: 0.3764706, a: 0.49019608}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0, g: 0, b: 0, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
