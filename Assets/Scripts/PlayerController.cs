@@ -18,15 +18,13 @@ public class PlayerController : MonoBehaviour
     private Vector3 lookingRight = new Vector3(0, 90, 0);
     private Vector3 lookingLeft = new Vector3(0, -90, 0);
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    // Variables avoiding spamming
+    public bool throwableProjectiles = true;
 
     // Update is called once per frame
     void Update()
     {
+
         // Movement based on QASD keys
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
@@ -58,33 +56,38 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             transform.rotation = Quaternion.Euler(lookingForward);
-            Instantiate(projectilePrefab, transform.position, transform.rotation);
-            Debug.Log("Working?");
-            direction = "up";
+            ThrowProjectile("up");
         }
 
         // Throw a projectile toward the left of the screen
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             transform.rotation = Quaternion.Euler(lookingLeft);
-            Instantiate(projectilePrefab, transform.position, transform.rotation);
-            direction = "left";
+            ThrowProjectile("left");
         }
 
         // Throw a projectile toward the bottom of the screen
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             transform.rotation = Quaternion.Euler(lookingBackward);
-            Instantiate(projectilePrefab, transform.position, transform.rotation);
-            direction = "down";
+            ThrowProjectile("down");
         }
 
         // Throw a projectile toward the right of the screen
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             transform.rotation = Quaternion.Euler(lookingRight);
+            ThrowProjectile("right");
+        }
+    }
+
+    private void ThrowProjectile(string directionToThrow)
+    {
+        if (throwableProjectiles)
+        {
             Instantiate(projectilePrefab, transform.position, transform.rotation);
-            direction = "right";
+            direction = directionToThrow;
+            throwableProjectiles = false;
         }
     }
 }

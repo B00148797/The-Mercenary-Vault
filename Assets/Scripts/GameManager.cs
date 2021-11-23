@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
         titleScreen.SetActive(false);
         room.SetActive(true);
         Instantiate(player, startPosition, player.transform.rotation);
+        StartCoroutine(Timer());
     }
 
     public void ShowCredits()
@@ -30,5 +31,14 @@ public class GameManager : MonoBehaviour
     {
         creditsScreen.SetActive(false);
         titleScreen.SetActive(true);
+    }
+
+    private IEnumerator Timer()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(0.3f);
+            GameObject.Find("Player(Clone)").GetComponent<PlayerController>().throwableProjectiles = true;
+        }
     }
 }
