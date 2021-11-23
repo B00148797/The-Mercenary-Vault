@@ -130,12 +130,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6241104104055133450, guid: f48e6793ee60deb4c962e7abe1c4036a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8735893419480368178, guid: f48e6793ee60deb4c962e7abe1c4036a, type: 3}
       propertyPath: m_Name
       value: MainRoom
       objectReference: {fileID: 0}
     - target: {fileID: 9148900339453005323, guid: f48e6793ee60deb4c962e7abe1c4036a, type: 3}
       propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9148900339453005323, guid: f48e6793ee60deb4c962e7abe1c4036a, type: 3}
+      propertyPath: m_LocalScale.x
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9148900339453005323, guid: f48e6793ee60deb4c962e7abe1c4036a, type: 3}
@@ -180,7 +188,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f48e6793ee60deb4c962e7abe1c4036a, type: 3}
---- !u!1001 &955836867
+--- !u!1001 &1074848863
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -413,3 +421,74 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1813538385
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1813538386}
+  - component: {fileID: 1813538387}
+  m_Layer: 0
+  m_Name: Room Templates
+  m_TagString: Rooms
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1813538386
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813538385}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 10, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1813538387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813538385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9a384719fb42a942b82ea83a12ae321, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  topRooms:
+  - {fileID: 882471201096161620, guid: 4faabc210252fd644a86e9e789ff2995, type: 3}
+  - {fileID: 1183099665691494148, guid: 850717b5257d010428a61a8fb00602c3, type: 3}
+  - {fileID: 1481606450579817182, guid: 511e88889e275ea4f907098a1a7f94c3, type: 3}
+  - {fileID: 9100775323185132573, guid: 710a8a25a2d10db4a83dab5621f68c76, type: 3}
+  - {fileID: 1481606450579817182, guid: 511e88889e275ea4f907098a1a7f94c3, type: 3}
+  rightRooms:
+  - {fileID: 56775456283036871, guid: 1f28ada6e98e0474884ab5d1d1726b5a, type: 3}
+  - {fileID: 3001811084127817265, guid: 08e8e3546c69b1f44aee3b1614d9ad11, type: 3}
+  - {fileID: 7878783107775217291, guid: 8e56b00ff35474b42bfb24e54f55c634, type: 3}
+  - {fileID: 1481606450579817182, guid: 511e88889e275ea4f907098a1a7f94c3, type: 3}
+  - {fileID: 7878783107775217291, guid: 8e56b00ff35474b42bfb24e54f55c634, type: 3}
+  bottomRooms:
+  - {fileID: 1901622236195833129, guid: 730e945d6b8438a4895d093e1aeebeec, type: 3}
+  - {fileID: 1183099665691494148, guid: 850717b5257d010428a61a8fb00602c3, type: 3}
+  - {fileID: 7878783107775217291, guid: 8e56b00ff35474b42bfb24e54f55c634, type: 3}
+  - {fileID: 8084499930560896087, guid: 775ce6174db337746bf9ab6da0a26f98, type: 3}
+  - {fileID: 7878783107775217291, guid: 8e56b00ff35474b42bfb24e54f55c634, type: 3}
+  leftRooms:
+  - {fileID: 8445296845031569788, guid: af1153c439cf14b46a69bb5e4852d4f2, type: 3}
+  - {fileID: 3001811084127817265, guid: 08e8e3546c69b1f44aee3b1614d9ad11, type: 3}
+  - {fileID: 8084499930560896087, guid: 775ce6174db337746bf9ab6da0a26f98, type: 3}
+  - {fileID: 9100775323185132573, guid: 710a8a25a2d10db4a83dab5621f68c76, type: 3}
+  - {fileID: 8084499930560896087, guid: 775ce6174db337746bf9ab6da0a26f98, type: 3}
+  closedRoom: {fileID: 2558778119186750815, guid: 54495d11e87d8cc40baee8b526aa983b, type: 3}
+  boss: {fileID: 8712636173971942234, guid: 54fe054fd70d1b84c9e3c8d9c25fc42e, type: 3}
+  rooms: []
+  waitTimeSpawnBoss: 4

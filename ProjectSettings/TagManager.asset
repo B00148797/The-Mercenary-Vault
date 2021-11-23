@@ -8,6 +8,8 @@ TagManager:
   - Room
   - MainRoom
   - Plane
+  - Rooms
+  - CloseRoom
   layers:
   - Default
   - TransparentFX
