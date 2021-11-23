@@ -8,11 +8,25 @@ public class GameManager : MonoBehaviour
     public GameObject titleScreen;
     public GameObject room;
     public GameObject creditsScreen;
+    public GameObject player;
+    public GameObject enemy;
+    public GameObject projectile;
+
+    private readonly Vector3 startPosition = new Vector3(0, 0.75f, 0);
+
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            Instantiate(projectile, player.transform.position, player.transform.rotation);
+        }
+    }
 
     public void StartGame()
     {
         titleScreen.SetActive(false);
         room.SetActive(true);
+        Instantiate(player, startPosition, player.transform.rotation);
     }
 
     public void ShowCredits()
