@@ -7,6 +7,7 @@ TagManager:
   - SpawnPoint
   - Room
   - MainRoom
+  - Plane
   layers:
   - Default
   - TransparentFX
