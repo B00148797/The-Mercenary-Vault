@@ -371,6 +371,7 @@ MonoBehaviour:
   - {fileID: 8084499930560896087, guid: 775ce6174db337746bf9ab6da0a26f98, type: 3}
   leftRooms: []
   rooms: []
+  spawned: 0
 --- !u!65 &1174754938064907197
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -455,6 +456,7 @@ MonoBehaviour:
   bottomRooms: []
   leftRooms: []
   rooms: []
+  spawned: 0
 --- !u!65 &4978185084566546755
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -910,6 +912,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6346386884130085384}
+  - component: {fileID: -3697769835359138959}
   m_Layer: 0
   m_Name: RB
   m_TagString: Untagged
@@ -935,3 +938,15 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-3697769835359138959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9100775323185132573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d68e0844065abbb4e894bdafb71b1841, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
