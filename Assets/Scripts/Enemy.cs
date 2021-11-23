@@ -4,15 +4,29 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+    public int life;
+    public int speed = 0;
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (life <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.tag == "Projectile")
+        {
+            life--;
+            Destroy(collision.gameObject);
+        }
     }
 }

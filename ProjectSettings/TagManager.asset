@@ -10,6 +10,7 @@ TagManager:
   - Plane
   - Rooms
   - CloseRoom
+  - Projectile
   layers:
   - Default
   - TransparentFX

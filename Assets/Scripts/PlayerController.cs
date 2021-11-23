@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public GameObject projectilePrefab;
+    public GameObject cameraGameObject;
+    private Vector3 positionCameraComparedPlane = new Vector3(0, 8, 0);
 
     private float horizontalInput;
     private float verticalInput;
@@ -59,7 +61,7 @@ public class PlayerController : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(lookingForward);
             Instantiate(projectilePrefab, transform.position, transform.rotation);
-            Debug.Log("Working?");
+            //Debug.Log("Working?");
             direction = "up";
         }
 
@@ -85,6 +87,17 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.Euler(lookingRight);
             Instantiate(projectilePrefab, transform.position, transform.rotation);
             direction = "right";
+        }
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.tag == "Plane")
+        {
+            positionCameraComparedPlane.x = collision.transform.position.x;
+            positionCameraComparedPlane.z = collision.transform.position.z;
+
+            cameraGameObject.transform.position = positionCameraComparedPlane;
         }
     }
 }
