@@ -32,12 +32,7 @@ public class SpawnRoom : MonoBehaviour
     {
         Destroy(gameObject, waitTime);
         Invoke("Spawn", 0.1f);
-        bossRoom = GameObject.Find("BossRoom");
-    }
-
-    private void Update()
-    {
-        
+        bossRoom = GameObject.Find("Boss");
     }
 
     void Spawn()
@@ -68,7 +63,6 @@ public class SpawnRoom : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         Destroy(gameObject);
-        //Debug.Log(collision.gameObject);
 
         if (collision.gameObject.CompareTag("SpawnPoint"))
         {
