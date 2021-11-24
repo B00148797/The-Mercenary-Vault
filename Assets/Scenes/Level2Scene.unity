@@ -270,6 +270,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 793902525497619292, guid: 8bf6c8e18a9ebd6419e8db5ad916e77c, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4677392653732450278, guid: 8bf6c8e18a9ebd6419e8db5ad916e77c, type: 3}
       propertyPath: cameraGameObject
       value: 
