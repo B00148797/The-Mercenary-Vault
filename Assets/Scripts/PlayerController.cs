@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -11,6 +9,7 @@ public class PlayerController : MonoBehaviour
     private float horizontalInput;
     private float verticalInput;
 
+    private Rigidbody playerRb;
     private readonly float movementSpeed = 5;
 
     // For the rotation while throwing projectiles
@@ -20,10 +19,13 @@ public class PlayerController : MonoBehaviour
     private Vector3 lookingRight = new Vector3(0, 90, 0);
     private Vector3 lookingLeft = new Vector3(0, -90, 0);
 
+    // Boolean to avoid spamming
+    public bool throwableProjectiles = true;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerRb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -38,20 +40,20 @@ public class PlayerController : MonoBehaviour
         switch (direction)
         {
             case "up":
-                transform.Translate(Vector3.forward * Time.deltaTime * movementSpeed * verticalInput);
-                transform.Translate(Vector3.right * Time.deltaTime * movementSpeed * horizontalInput);
+                playerRb.AddForce(Vector3.forward * Time.deltaTime * movementSpeed * verticalInput, ForceMode.Force);
+                playerRb.AddForce(Vector3.right * Time.deltaTime * movementSpeed * horizontalInput, ForceMode.Force);
                 break;
             case "down":
-                transform.Translate(Vector3.forward * Time.deltaTime * movementSpeed * -verticalInput);
-                transform.Translate(Vector3.right * Time.deltaTime * movementSpeed * -horizontalInput);
+                playerRb.AddForce(Vector3.forward * Time.deltaTime * movementSpeed * -verticalInput, ForceMode.Force);
+                playerRb.AddForce(Vector3.right * Time.deltaTime * movementSpeed * -horizontalInput, ForceMode.Force);
                 break;
             case "left":
-                transform.Translate(Vector3.forward * Time.deltaTime * movementSpeed * -horizontalInput);
-                transform.Translate(Vector3.right * Time.deltaTime * movementSpeed * verticalInput);
+                playerRb.AddForce(Vector3.forward * Time.deltaTime * movementSpeed * -horizontalInput, ForceMode.Force);
+                playerRb.AddForce(Vector3.right * Time.deltaTime * movementSpeed * verticalInput, ForceMode.Force);
                 break;
             case "right":
-                transform.Translate(Vector3.forward * Time.deltaTime * movementSpeed * horizontalInput);
-                transform.Translate(Vector3.right * Time.deltaTime * movementSpeed * -verticalInput);
+                playerRb.AddForce(Vector3.forward * Time.deltaTime * movementSpeed * horizontalInput, ForceMode.Force);
+                playerRb.AddForce(Vector3.right * Time.deltaTime * movementSpeed * -verticalInput, ForceMode.Force);
                 break;
 
         }
@@ -60,44 +62,49 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             transform.rotation = Quaternion.Euler(lookingForward);
-            Instantiate(projectilePrefab, transform.position, transform.rotation);
-            //Debug.Log("Working?");
-            direction = "up";
+            ThrowProjectile("up");
         }
 
         // Throw a projectile toward the left of the screen
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             transform.rotation = Quaternion.Euler(lookingLeft);
-            Instantiate(projectilePrefab, transform.position, transform.rotation);
-            direction = "left";
+            ThrowProjectile("left");
         }
 
         // Throw a projectile toward the bottom of the screen
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             transform.rotation = Quaternion.Euler(lookingBackward);
-            Instantiate(projectilePrefab, transform.position, transform.rotation);
-            direction = "down";
+            ThrowProjectile("down");
         }
 
         // Throw a projectile toward the right of the screen
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             transform.rotation = Quaternion.Euler(lookingRight);
-            Instantiate(projectilePrefab, transform.position, transform.rotation);
-            direction = "right";
+            ThrowProjectile("right");
         }
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.tag == "Plane")
+        if (collision.gameObject.tag == "Plane")
         {
             positionCameraComparedPlane.x = collision.transform.position.x;
             positionCameraComparedPlane.z = collision.transform.position.z;
 
             cameraGameObject.transform.position = positionCameraComparedPlane;
+        }
+    }
+
+    private void ThrowProjectile(string throwDirection)
+    {
+        if (throwableProjectiles)
+        {
+            Instantiate(projectilePrefab, transform.position, transform.rotation);
+            direction = throwDirection;
+            throwableProjectiles = false;
         }
     }
 }

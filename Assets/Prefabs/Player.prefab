@@ -128,3 +128,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 3336709674757075411, guid: 0429c1aa803422948825a16a4b6295f2, type: 3}
   cameraGameObject: {fileID: 0}
+  throwableProjectiles: 1
