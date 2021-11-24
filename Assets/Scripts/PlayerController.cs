@@ -64,28 +64,19 @@ public class PlayerController : MonoBehaviour
         }
 
         // Throw a projectile toward the top of the screen
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.UpArrow))
         {
             transform.rotation = Quaternion.Euler(lookingForward);
             ThrowProjectile("up");
-        }
-
-        // Throw a projectile toward the left of the screen
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        } else if (Input.GetKey(KeyCode.LeftArrow))
         {
             transform.rotation = Quaternion.Euler(lookingLeft);
             ThrowProjectile("left");
-        }
-
-        // Throw a projectile toward the bottom of the screen
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        } else if (Input.GetKey(KeyCode.DownArrow))
         {
             transform.rotation = Quaternion.Euler(lookingBackward);
             ThrowProjectile("down");
-        }
-
-        // Throw a projectile toward the right of the screen
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        } else if (Input.GetKey(KeyCode.RightArrow))
         {
             transform.rotation = Quaternion.Euler(lookingRight);
             ThrowProjectile("right");
