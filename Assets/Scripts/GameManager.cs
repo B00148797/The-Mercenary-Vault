@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,9 +9,16 @@ public class GameManager : MonoBehaviour
     public GameObject creditsScreen;
     public GameObject player;
     public GameObject enemy;
+    public GameObject gameOverScreen;
+    public GameObject winScreen;
+    public TextMeshProUGUI healthText;
+
+    private PlayerController mainPlayer;
 
     // Position of the spawn of the player when pressing start
     private readonly Vector3 startPosition = new Vector3(0, 0.75f, 0);
+
+    private bool isGameOver = false;
 
     // Button Start Pressed
     public void StartGame()
@@ -18,6 +26,8 @@ public class GameManager : MonoBehaviour
         titleScreen.SetActive(false);
         room.SetActive(true);
         Instantiate(player, startPosition, player.transform.rotation);
+        mainPlayer = GameObject.Find("Player(Clone)").GetComponent<PlayerController>();
+        healthText.text = "Health Remaining: " + mainPlayer.health;
         StartCoroutine(Timer());
     }
 
@@ -38,11 +48,37 @@ public class GameManager : MonoBehaviour
     // Routine To Avoid Projectiles Spam
     private IEnumerator Timer()
     {
-        // TODO : Define a game over and make is as a condition of the while loop
-        while (true)
+        while (!isGameOver)
         {
             yield return new WaitForSeconds(0.3f);
-            GameObject.Find("Player(Clone)").GetComponent<PlayerController>().throwableProjectiles = true;
+
+            if(mainPlayer.health <= 0)
+            {
+                GameOver();
+            }
+            else if (mainPlayer.win)
+            {
+                Win();
+            } 
+            else
+            {
+                healthText.text = "Health Remaining: " + mainPlayer.health;
+                mainPlayer.throwableProjectiles = true;
+            }
         }
+    }
+
+    private void GameOver()
+    {
+        isGameOver = true;
+        room.SetActive(false);
+        gameOverScreen.SetActive(true);
+    }
+
+    private void Win()
+    {
+        isGameOver = true;
+        room.SetActive(false);
+        winScreen.SetActive(true);
     }
 }

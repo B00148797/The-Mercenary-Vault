@@ -9,7 +9,6 @@ public class PlayerController : MonoBehaviour
     private float horizontalInput;
     private float verticalInput;
 
-    private Rigidbody playerRb;
     private readonly float movementSpeed = 5;
 
     // For the rotation while throwing projectiles
@@ -22,10 +21,16 @@ public class PlayerController : MonoBehaviour
     // Boolean to avoid spamming
     public bool throwableProjectiles = true;
 
+    // Health
+    public int health = 3;
+
+    // Reach the end of the level boolean
+    public bool win = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        playerRb = GetComponent<Rigidbody>();
+
     }
 
     // Update is called once per frame
@@ -40,20 +45,20 @@ public class PlayerController : MonoBehaviour
         switch (direction)
         {
             case "up":
-                playerRb.AddForce(Vector3.forward * Time.deltaTime * movementSpeed * verticalInput, ForceMode.Force);
-                playerRb.AddForce(Vector3.right * Time.deltaTime * movementSpeed * horizontalInput, ForceMode.Force);
+                transform.Translate(Vector3.forward * Time.deltaTime * movementSpeed * verticalInput);
+                transform.Translate(Vector3.right * Time.deltaTime * movementSpeed * horizontalInput);
                 break;
             case "down":
-                playerRb.AddForce(Vector3.forward * Time.deltaTime * movementSpeed * -verticalInput, ForceMode.Force);
-                playerRb.AddForce(Vector3.right * Time.deltaTime * movementSpeed * -horizontalInput, ForceMode.Force);
+                transform.Translate(Vector3.forward * Time.deltaTime * movementSpeed * -verticalInput);
+                transform.Translate(Vector3.right * Time.deltaTime * movementSpeed * -horizontalInput);
                 break;
             case "left":
-                playerRb.AddForce(Vector3.forward * Time.deltaTime * movementSpeed * -horizontalInput, ForceMode.Force);
-                playerRb.AddForce(Vector3.right * Time.deltaTime * movementSpeed * verticalInput, ForceMode.Force);
+                transform.Translate(Vector3.forward * Time.deltaTime * movementSpeed * -horizontalInput);
+                transform.Translate(Vector3.right * Time.deltaTime * movementSpeed * verticalInput);
                 break;
             case "right":
-                playerRb.AddForce(Vector3.forward * Time.deltaTime * movementSpeed * horizontalInput, ForceMode.Force);
-                playerRb.AddForce(Vector3.right * Time.deltaTime * movementSpeed * -verticalInput, ForceMode.Force);
+                transform.Translate(Vector3.forward * Time.deltaTime * movementSpeed * horizontalInput);
+                transform.Translate(Vector3.right * Time.deltaTime * movementSpeed * -verticalInput);
                 break;
 
         }
@@ -96,13 +101,18 @@ public class PlayerController : MonoBehaviour
 
             cameraGameObject.transform.position = positionCameraComparedPlane;
         }
+
+        if (collision.gameObject.CompareTag("Boss"))
+        {
+            win = true;
+        }
     }
 
     private void ThrowProjectile(string throwDirection)
     {
         if (throwableProjectiles)
         {
-            Instantiate(projectilePrefab, transform.position, transform.rotation);
+            Instantiate(projectilePrefab, transform.position + transform.forward, transform.rotation);
             direction = throwDirection;
             throwableProjectiles = false;
         }
