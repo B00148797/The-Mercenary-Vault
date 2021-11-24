@@ -7,11 +7,14 @@ public class Enemy : MonoBehaviour
 
     public int life;
     public int speed = 0;
-    Camera camera;
+
+    private Rigidbody enemyRb;
+    private GameObject player;
 
     void Start()
     {
-        camera = GameObject.Find("Main Camera").GetComponent<Camera>();
+        enemyRb = GetComponent<Rigidbody>();
+        player = GameObject.Find("Player");
     }
 
     void Update()
@@ -21,9 +24,11 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (IsTargetVisible(camera, gameObject))
+        if (IsTargetVisible(GameObject.Find("Main Camera").GetComponent<Camera>(), gameObject))
         {
-            print("Je suis visible !");
+            //L'entiter est visible par la camera
+            Vector3 lookDirection = (player.transform.position - transform.position).normalized;
+            enemyRb.AddForce(lookDirection * speed * Time.deltaTime);
         }
     }
 
