@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour
     private readonly float movementSpeed = 5;
 
     // For the rotation while throwing projectiles
-    private string direction = "up";
     private Vector3 lookingForward = new Vector3(0, 0, 0);
     private Vector3 lookingBackward = new Vector3(0, 180, 0);
     private Vector3 lookingRight = new Vector3(0, 90, 0);
@@ -42,44 +41,26 @@ public class PlayerController : MonoBehaviour
 
 
         // Translate direction according to the rotation of the player
-        switch (direction)
-        {
-            case "up":
-                transform.Translate(Vector3.forward * Time.deltaTime * movementSpeed * verticalInput);
-                transform.Translate(Vector3.right * Time.deltaTime * movementSpeed * horizontalInput);
-                break;
-            case "down":
-                transform.Translate(Vector3.forward * Time.deltaTime * movementSpeed * -verticalInput);
-                transform.Translate(Vector3.right * Time.deltaTime * movementSpeed * -horizontalInput);
-                break;
-            case "left":
-                transform.Translate(Vector3.forward * Time.deltaTime * movementSpeed * -horizontalInput);
-                transform.Translate(Vector3.right * Time.deltaTime * movementSpeed * verticalInput);
-                break;
-            case "right":
-                transform.Translate(Vector3.forward * Time.deltaTime * movementSpeed * horizontalInput);
-                transform.Translate(Vector3.right * Time.deltaTime * movementSpeed * -verticalInput);
-                break;
-
-        }
+        transform.Translate(Vector3.forward * Time.deltaTime * movementSpeed * verticalInput, Space.World);
+        transform.Translate(Vector3.right * Time.deltaTime * movementSpeed * horizontalInput, Space.World);
 
         // Throw a projectile toward the top of the screen
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            transform.rotation = Quaternion.Euler(lookingForward);
-            ThrowProjectile("up");
+            transform.rotation = Quaternion.Euler(lookingForward); 
+            ThrowProjectile();
         } else if (Input.GetKey(KeyCode.LeftArrow))
         {
             transform.rotation = Quaternion.Euler(lookingLeft);
-            ThrowProjectile("left");
+            ThrowProjectile();
         } else if (Input.GetKey(KeyCode.DownArrow))
         {
             transform.rotation = Quaternion.Euler(lookingBackward);
-            ThrowProjectile("down");
+            ThrowProjectile();
         } else if (Input.GetKey(KeyCode.RightArrow))
         {
             transform.rotation = Quaternion.Euler(lookingRight);
-            ThrowProjectile("right");
+            ThrowProjectile();
         }
     }
 
@@ -99,12 +80,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void ThrowProjectile(string throwDirection)
+    private void ThrowProjectile()
     {
         if (throwableProjectiles)
         {
             Instantiate(projectilePrefab, transform.position + transform.forward, transform.rotation);
-            direction = throwDirection;
             throwableProjectiles = false;
         }
     }

@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    private float projectileSpeed = 10;
+    // Projectile speed
+    private readonly float projectileSpeed = 10;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +17,7 @@ public class Projectile : MonoBehaviour
         transform.Translate(Vector3.forward * Time.deltaTime * projectileSpeed);
     }
 
+    // Destroy when hits objects
     private void OnCollisionEnter(Collision collision)
     {
         if(!collision.gameObject.CompareTag("Player")) Destroy(gameObject);

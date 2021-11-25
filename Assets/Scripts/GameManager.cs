@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     // Position of the spawn of the player when pressing start
     private readonly Vector3 startPosition = new Vector3(0, 0.75f, 0);
 
+    // Is Game Over
     private bool isGameOver = false;
 
     // Button Start Pressed
@@ -60,6 +61,7 @@ public class GameManager : MonoBehaviour
             {
                 Win();
             } 
+            // Change the health displayed if needed and make projectiles throwable
             else
             {
                 healthText.text = "Health Remaining: " + mainPlayer.health;
@@ -68,6 +70,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Display the GameOver sreen
     private void GameOver()
     {
         isGameOver = true;
@@ -75,6 +78,7 @@ public class GameManager : MonoBehaviour
         gameOverScreen.SetActive(true);
     }
 
+    // Display the win screen
     private void Win()
     {
         isGameOver = true;
