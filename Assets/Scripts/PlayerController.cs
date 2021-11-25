@@ -82,6 +82,11 @@ public class PlayerController : MonoBehaviour
         {
             win = true;
         }
+
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            health--;
+        }
     }
 
     private void ThrowProjectile()
