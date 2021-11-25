@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 lookingLeft = new Vector3(0, -90, 0);
 
     // y position camera
-    private float yPositionCamera = 30f;
+    private float yPositionCamera;
 
     // Boolean to avoid spamming
     public bool throwableProjectiles = true;
@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        yPositionCamera = cameraGameObject.gameObject.transform.position.y;
     }
 
     // Update is called once per frame
