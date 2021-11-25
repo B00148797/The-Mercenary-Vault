@@ -26,8 +26,7 @@ public class GameManager : MonoBehaviour
     {
         titleScreen.SetActive(false);
         room.SetActive(true);
-        Instantiate(player, startPosition, player.transform.rotation);
-        mainPlayer = GameObject.Find("Player(Clone)").GetComponent<PlayerController>();
+        mainPlayer = GameObject.Find("Player").GetComponent<PlayerController>();
         healthText.text = "Health Remaining: " + mainPlayer.health;
         StartCoroutine(Timer());
     }
