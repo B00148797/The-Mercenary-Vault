@@ -7,6 +7,7 @@ public class SpawnEnemy : MonoBehaviour
 
     public GameObject[] patternEnemyList;
     public GameObject[] lootList;
+    private readonly int waitTime = 1;
 
     private int rand;
 
@@ -24,5 +25,6 @@ public class SpawnEnemy : MonoBehaviour
                 Instantiate(patternEnemyList[rand], transform.position, patternEnemyList[rand].transform.rotation);
                 break;
         }
+        Destroy(gameObject, waitTime);
     }
 }

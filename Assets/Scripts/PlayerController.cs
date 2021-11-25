@@ -17,9 +17,6 @@ public class PlayerController : MonoBehaviour
     private Vector3 lookingRight = new Vector3(0, 90, 0);
     private Vector3 lookingLeft = new Vector3(0, -90, 0);
 
-    // y position camera
-    private float yPositionCamera = 30f;
-
     // Boolean to avoid spamming
     public bool throwableProjectiles = true;
 
@@ -73,8 +70,6 @@ public class PlayerController : MonoBehaviour
         {
             positionCameraComparedPlane.x = collision.transform.position.x;
             positionCameraComparedPlane.z = collision.transform.position.z;
-            positionCameraComparedPlane.y = yPositionCamera;
-
             cameraGameObject.transform.position = positionCameraComparedPlane;
         }
 
