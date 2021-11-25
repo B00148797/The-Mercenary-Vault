@@ -12,6 +12,7 @@ TagManager:
   - CloseRoom
   - Projectile
   - Boss
+  - Enemy
   layers:
   - Default
   - TransparentFX
