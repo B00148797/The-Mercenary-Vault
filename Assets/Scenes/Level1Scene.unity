@@ -3621,10 +3621,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 996832570}
     m_Modifications:
-    - target: {fileID: 313617809902292336, guid: 7a38272b1a5184945945e675818f6269, type: 3}
-      propertyPath: m_TagString
-      value: Plane
-      objectReference: {fileID: 0}
     - target: {fileID: 5588639290015498244, guid: 7a38272b1a5184945945e675818f6269, type: 3}
       propertyPath: m_RootOrder
       value: 10
