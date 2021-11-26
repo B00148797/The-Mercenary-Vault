@@ -10,7 +10,7 @@ public class SpawnRoom : MonoBehaviour
     public int needRoomDirection;
 
     public bool spawned = false;
-    private float waitTime = 4;
+    private readonly float waitTime = 4;
 
     private int rand;
 
@@ -32,7 +32,7 @@ public class SpawnRoom : MonoBehaviour
 
     void Spawn()
     {
-        if (spawned == false)
+        if (!spawned)
         {
             switch (needRoomDirection)
             {
@@ -63,7 +63,7 @@ public class SpawnRoom : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("SpawnPoint"))
         {
-            if (collision.gameObject.GetComponent<SpawnRoom>().spawned == false && spawned == false)
+            if (!collision.gameObject.GetComponent<SpawnRoom>().spawned && !spawned)
             {
                 closedRoom = GameObject.Find("CloseRoom");
                 Instantiate(closedRoom, transform.position, transform.rotation);

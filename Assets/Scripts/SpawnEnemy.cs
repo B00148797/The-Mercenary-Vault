@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnEnemy : MonoBehaviour
@@ -17,9 +15,11 @@ public class SpawnEnemy : MonoBehaviour
 
         switch (rand)
         {
+            // Loot
             case 0:
                 Instantiate(lootList[rand], transform.position, lootList[rand].transform.rotation);
                 break;
+            // Enemies
             default:
                 rand = Random.Range(0, patternEnemyList.Length);
                 Instantiate(patternEnemyList[rand], transform.position, patternEnemyList[rand].transform.rotation);

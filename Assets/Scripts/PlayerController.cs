@@ -2,13 +2,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public GameObject projectilePrefab;
-    public GameObject cameraGameObject;
-    private Vector3 positionCameraComparedPlane = new Vector3(0, 8, 0);
 
+    // Player Movements
     private float horizontalInput;
     private float verticalInput;
-
     private readonly float movementSpeed = 5;
 
     // For the rotation while throwing projectiles
@@ -17,11 +14,14 @@ public class PlayerController : MonoBehaviour
     private Vector3 lookingRight = new Vector3(0, 90, 0);
     private Vector3 lookingLeft = new Vector3(0, -90, 0);
 
-    // y position camera
+    // Camera Managing
     private float yPositionCamera;
+    public GameObject cameraGameObject;
+    private Vector3 positionCameraComparedPlane = new Vector3(0, 8, 0);
 
-    // Boolean to avoid spamming
+    // Projectiles Managing
     public bool throwableProjectiles = true;
+    public GameObject projectilePrefab;
 
     // Health
     public int health = 3;
@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // To keep the camera to the same height
         yPositionCamera = cameraGameObject.gameObject.transform.position.y;
     }
 
@@ -46,7 +47,7 @@ public class PlayerController : MonoBehaviour
         transform.Translate(Vector3.forward * Time.deltaTime * movementSpeed * verticalInput, Space.World);
         transform.Translate(Vector3.right * Time.deltaTime * movementSpeed * horizontalInput, Space.World);
 
-        // Throw a projectile toward the top of the screen
+        // Throw a projectile controls
         if (Input.GetKey(KeyCode.UpArrow))
         {
             transform.rotation = Quaternion.Euler(lookingForward); 
@@ -68,6 +69,7 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        // Change position of the camera
         if (collision.gameObject.CompareTag("Plane"))
         {
             positionCameraComparedPlane.x = collision.transform.position.x;
@@ -76,17 +78,22 @@ public class PlayerController : MonoBehaviour
             cameraGameObject.transform.position = positionCameraComparedPlane;
         }
 
+        // Win the game
         if (collision.gameObject.CompareTag("Boss"))
         {
             win = true;
         }
 
+        // Lose one health
         if (collision.gameObject.CompareTag("Enemy"))
         {
             health--;
         }
     }
 
+    /// <summary>
+    /// Throw Projectiles in front of the player gameObject
+    /// </summary>
     private void ThrowProjectile()
     {
         if (throwableProjectiles)

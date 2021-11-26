@@ -10,33 +10,39 @@ public class RoomTemplates : MonoBehaviour
 	public GameObject[] bottomRooms;
 	public GameObject[] leftRooms;
 
+	// 3D GameObjects
 	public GameObject closedRoom;
 	public GameObject boss;
 
-	//Save the Roms in the order they appear
+	//Save the Rooms in order of their appearance
 	public List<GameObject> rooms;
 
 	//Time to wait before spawning the boss
-	public float waitTimeSpawnBoss = 4;
-	private bool spawnedBoss;
-	
-	void Update()
+	private readonly float waitTimeSpawnBoss = 4;
+
+    private void Start()
+    {
+		StartCoroutine(SpawnBoss());
+    }
+
+    void Update()
 	{
-		if (waitTimeSpawnBoss <= 0 && spawnedBoss == false)
+
+	}
+
+	/// <summary>
+	/// Wait for the stage to be full loaded before spawning the boss
+	/// </summary>
+	/// <returns></returns>
+	private IEnumerator SpawnBoss()
+    {
+		yield return new WaitForSeconds(waitTimeSpawnBoss);
+		for (int i = 0; i < rooms.Count; i++)
 		{
-			for (int i = 0; i < rooms.Count; i++)
+			if (i == rooms.Count - 1)
 			{
-				if (i == rooms.Count - 1)
-				{
-					Instantiate(boss, rooms[i].transform.position, transform.rotation);
-					spawnedBoss = true;
-					Debug.Log("Spawn Boss!");
-				}
+				Instantiate(boss, rooms[i].transform.position, transform.rotation);
 			}
-		}
-		else
-        {
-			waitTimeSpawnBoss -= Time.deltaTime;
 		}
 	}
 }
