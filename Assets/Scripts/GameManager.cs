@@ -4,16 +4,20 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    // Screens
     public GameObject titleScreen;
     public GameObject room;
     public GameObject creditsScreen;
-    public GameObject player;
-    public GameObject enemy;
     public GameObject gameOverScreen;
     public GameObject winScreen;
+
+    // 3D Objects
+    private PlayerController mainPlayer;
+    public GameObject enemy;
+
+    // HUD
     public TextMeshProUGUI healthText;
 
-    private PlayerController mainPlayer;
 
     // Position of the spawn of the player when pressing start
     private readonly Vector3 startPosition = new Vector3(0, 0.75f, 0);
@@ -24,8 +28,11 @@ public class GameManager : MonoBehaviour
     // Button Start Pressed
     public void StartGame()
     {
+        // Display Labyrinth
         titleScreen.SetActive(false);
         room.SetActive(true);
+
+        // Game Setter
         mainPlayer = GameObject.Find("Player").GetComponent<PlayerController>();
         healthText.text = "Health Remaining: " + mainPlayer.health;
         StartCoroutine(Timer());
@@ -34,6 +41,7 @@ public class GameManager : MonoBehaviour
     // Button Credits Pressed
     public void ShowCredits()
     {
+        // Display Credits Screen
         titleScreen.SetActive(false);
         creditsScreen.SetActive(true);
     }
@@ -41,6 +49,7 @@ public class GameManager : MonoBehaviour
     // Button ExitCredits Pressed
     public void ExitCredits()
     {
+        // Display Back Title Screen
         creditsScreen.SetActive(false);
         titleScreen.SetActive(true);
     }
@@ -50,6 +59,7 @@ public class GameManager : MonoBehaviour
     {
         while (!isGameOver)
         {
+            // Can throw projectiles every 0.3 seconds
             yield return new WaitForSeconds(0.3f);
 
             if(mainPlayer.health <= 0)

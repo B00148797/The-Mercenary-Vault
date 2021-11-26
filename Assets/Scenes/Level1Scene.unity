@@ -645,10 +645,9 @@ MonoBehaviour:
   titleScreen: {fileID: 1137927873}
   room: {fileID: 996832569}
   creditsScreen: {fileID: 1600954195}
-  player: {fileID: 4677392653732450284, guid: 8bf6c8e18a9ebd6419e8db5ad916e77c, type: 3}
-  enemy: {fileID: 7346773736782420649, guid: a5aae22f4221c9b48a0770eaa0c68313, type: 3}
   gameOverScreen: {fileID: 45725612}
   winScreen: {fileID: 2102986259}
+  enemy: {fileID: 7346773736782420649, guid: a5aae22f4221c9b48a0770eaa0c68313, type: 3}
   healthText: {fileID: 2026420972}
 --- !u!4 &377818497
 Transform:
@@ -4612,7 +4611,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 152, y: -36}
+  m_AnchoredPosition: {x: 115, y: -40}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2026420972
@@ -4670,7 +4669,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
