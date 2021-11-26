@@ -4,11 +4,12 @@
 
 ### Thomas Perisse
 
-
+ - Mapping of the stage
+ - Enemies and Enemies Group Prefab
+ - Camera Managing 
 
 ### Leo Destenay
 
- - 3D Modelisation (Walls Collider, Player Physics, Projectile Physics)
  - PlayerController
  - Projectiles
  - GameManager (Manage all menus, Game Over trigger and screen, Win trigger and screen, Credits screen, Starting Menu Screen)
