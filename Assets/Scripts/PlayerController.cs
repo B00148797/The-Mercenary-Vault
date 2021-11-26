@@ -42,7 +42,6 @@ public class PlayerController : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
 
-
         // Translate direction according to the rotation of the player
         transform.Translate(Vector3.forward * Time.deltaTime * movementSpeed * verticalInput, Space.World);
         transform.Translate(Vector3.right * Time.deltaTime * movementSpeed * horizontalInput, Space.World);
