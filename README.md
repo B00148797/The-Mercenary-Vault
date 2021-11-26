@@ -5,8 +5,8 @@
 ### Thomas Perisse
 
  - Mapping of the stage
- - Enemies and Enemies Group Prefab
- - Camera Managing 
+ - Enemies and Enemies Group Prefab (Comportment when out of the screen, comportment when on the screen etc...)
+ - Camera Managing (Changing POV when the player is changing room)
 
 ### Leo Destenay
 
